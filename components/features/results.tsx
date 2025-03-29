@@ -1,10 +1,9 @@
-import { useSqlStore } from "@/store/sqlStore";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle, Maximize2, Minimize2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Card } from "../ui/card";
+import { useSqlStore } from "@/store/sqlStore";
+import { Maximize2, Minimize2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { Card } from "../ui/card";
 
 export function ResultsTable() {
   const { queryResults, queryError } = useSqlStore();
@@ -12,17 +11,15 @@ export function ResultsTable() {
 
   if (queryError) {
     return (
-      <Alert variant="destructive" className="p-5 border-0 flex justify-center">
-        <AlertCircle className="h-4 w-4" />
-        <AlertTitle>Error</AlertTitle>
-        <AlertDescription>{queryError}</AlertDescription>
-      </Alert>
+      <div className="text-[0.6rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+        {queryError}
+      </div>
     );
   }
 
   if (!queryResults || queryResults.length === 0) {
     return (
-      <div className="text-xs sm:text-sm  p-5 text-center text-gray-500">
+      <div className="text-[0.6rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
         No results to display. Run a query to see results.
       </div>
     );
@@ -33,7 +30,7 @@ export function ResultsTable() {
   return (
     <Card className={`p-4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
     <div className="flex justify-between items-center ">
-      <span className="text-xs text-muted-foreground">
+      <span className="text-[0.6rem] sm:text-xs text-muted-foreground">
         {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
       </span>
       <Button

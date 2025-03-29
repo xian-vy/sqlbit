@@ -26,7 +26,7 @@ export function ModeToggle() {
       size="sm"
       variant="ghost" 
       onClick={toggleTheme}
-      className="font-medium text-xs"
+      className="font-medium text-xs px-0"
     >
       {displayTheme}
     </Button>

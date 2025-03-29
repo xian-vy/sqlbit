@@ -2,13 +2,18 @@ import { tableData, TableName } from '@/data/tables';
 import { useRef, useState } from 'react';
 import { Textarea } from '../ui/textarea';
 import { useSqlStore } from '@/store/sqlStore';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
 export function SqlEditor() {
-  const {  rawQuery, setRawQuery } = useSqlStore();
-
+  const { rawQuery, setRawQuery } = useSqlStore();
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [cursorPosition, setCursorPosition] = useState({ top: 0, left: 0 });
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const getAllSuggestions = () => {
@@ -23,6 +28,7 @@ export function SqlEditor() {
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
     setRawQuery(newValue);
+    setSelectedIndex(0);
 
     const cursorPos = e.target.selectionStart;
     const textBeforeCursor = newValue.slice(0, cursorPos);
@@ -37,23 +43,35 @@ export function SqlEditor() {
       setSuggestions(filtered);
       setShowSuggestions(filtered.length > 0);
 
-      // Calculate position for suggestions
-      const textArea = textareaRef.current;
-      if (textArea) {
-        const dummy = document.createElement('div');
-        dummy.style.position = 'absolute';
-        dummy.style.visibility = 'hidden';
-        dummy.style.whiteSpace = 'pre-wrap';
-        dummy.style.font = window.getComputedStyle(textArea).font;
-        dummy.textContent = textBeforeCursor;
-        document.body.appendChild(dummy);
-        const rect = textArea.getBoundingClientRect();
-        const pos = {
-          top: rect.top + dummy.offsetHeight + window.scrollY,
-          left: rect.left + dummy.offsetWidth + window.scrollX
-        };
-        document.body.removeChild(dummy);
-        setCursorPosition(pos);
+      // Get cursor position
+      const textarea = textareaRef.current;
+      if (textarea) {
+        const { selectionStart } = textarea;
+        const textBeforeCursor = textarea.value.substring(0, selectionStart);
+        const lines = textBeforeCursor.split('\n');
+        const currentLineNumber = lines.length - 1;
+        const currentLineText = lines[currentLineNumber];
+        
+        // Create a temporary span to measure text width
+        const span = document.createElement('span');
+        span.style.font = window.getComputedStyle(textarea).font;
+        span.style.visibility = 'hidden';
+        span.style.position = 'absolute';
+        span.textContent = currentLineText;
+        document.body.appendChild(span);
+        
+        const rect = textarea.getBoundingClientRect();
+        const computedStyle = window.getComputedStyle(textarea);
+        const lineHeight = parseInt(computedStyle.lineHeight);
+        const paddingTop = parseInt(computedStyle.paddingTop);
+        const paddingLeft = parseInt(computedStyle.paddingLeft);
+        
+        setCursorPosition({
+          x: rect.left + paddingLeft + span.offsetWidth -lineHeight,
+          y: rect.top + (currentLineNumber * lineHeight) + paddingTop - lineHeight
+        });
+        
+        document.body.removeChild(span);
       }
     } else {
       setShowSuggestions(false);
@@ -70,6 +88,23 @@ export function SqlEditor() {
     setRawQuery(newText);
     setShowSuggestions(false);
   };
+  
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (showSuggestions) {
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev + 1) % suggestions.length);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
+      } else if (e.key === 'Enter' && suggestions.length > 0) {
+        e.preventDefault();
+        handleSuggestionClick(suggestions[selectedIndex]);
+      } else if (e.key === 'Escape') {
+        setShowSuggestions(false);
+      }
+    }
+  };
 
   return (
     <div className="relative !h-full">
@@ -78,25 +113,43 @@ export function SqlEditor() {
         value={rawQuery}
         spellCheck={false}
         onChange={handleInput}
-        className="w-full !h-auto text-xs sm:!text-sm resize-none  p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
+        onKeyDown={handleKeyDown}
+        className="w-full !h-full text-[0.65rem] sm:!text-xs xl:!text-[0.8rem] 2xl:!text-sm resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
         placeholder="Enter your SQL query here..."
       />
-      {showSuggestions && (
-        <div
-          className="absolute z-10 bg-background border rounded-md shadow-lg max-h-48 overflow-y-auto"
-          style={{ top: `${cursorPosition.top}px`, left: `${cursorPosition.left}px` }}
+      <Popover open={showSuggestions} onOpenChange={setShowSuggestions}>
+        <PopoverTrigger asChild>
+          <div
+            style={{
+              position: 'absolute',
+              top: `${cursorPosition.y}px`,
+              left: `${cursorPosition.x}px`,
+              width: '1px',
+              height: '1px',
+            }}
+          />
+        </PopoverTrigger>
+        <PopoverContent 
+          className="w-48 p-0  !rounded-none !shadow-none" 
+          align="start"
+          sideOffset={5}
+          onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          {suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className="px-4 py-2 hover:bg-accent cursor-pointer"
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
-        </div>
-      )}
+          <div className="max-h-56 2xl:max-h-[300px] 3xl:max-h-[350px] overflow-y-auto">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className={`px-4 py-2 hover:bg-accent cursor-pointer text-[0.6rem] sm:text-xs 2xl:text-[0.8rem] ${
+                  index === selectedIndex ? 'bg-accent' : ''
+                }`}
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 }
