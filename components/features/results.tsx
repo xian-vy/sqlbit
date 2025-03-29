@@ -11,7 +11,7 @@ export function ResultsTable() {
 
   if (queryError) {
     return (
-      <div className="text-[0.6rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
         {queryError}
       </div>
     );
@@ -19,7 +19,7 @@ export function ResultsTable() {
 
   if (!queryResults || queryResults.length === 0) {
     return (
-      <div className="text-[0.6rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
         No results to display. Run a query to see results.
       </div>
     );
@@ -30,7 +30,7 @@ export function ResultsTable() {
   return (
     <Card className={`p-4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
     <div className="flex justify-between items-center ">
-      <span className="text-[0.6rem] sm:text-xs text-muted-foreground">
+      <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
         {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
       </span>
       <Button

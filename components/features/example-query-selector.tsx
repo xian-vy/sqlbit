@@ -42,7 +42,7 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
   return (
     <div className="self-end">
       <Select onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[140px] sm:w-[150px] shadow-none text-[0.6rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
+        <SelectTrigger size="sm" className="w-[140px] sm:w-[150px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
           <SelectValue placeholder="Load example" />
         </SelectTrigger>
         <SelectContent className="shadow-none rounded-none">
@@ -50,14 +50,14 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
             <div>
               {leftColumn.map(([category, queries]) => (
                 <div key={category}>
-                  <SelectItem value={category} disabled className="text-[0.6rem] sm:text-xs  font-bold text-muted-foreground">
+                  <SelectItem value={category} disabled className="text-[0.7rem] sm:text-xs  font-bold text-muted-foreground">
                     {category}
                   </SelectItem>
                   {Object.entries(queries).map(([queryName]) => (
                     <SelectItem
                       key={`${category}||${queryName}`}
                       value={`${category}||${queryName}`}
-                      className="text-[0.6rem] sm:text-xs pl-4"
+                      className="text-[0.7rem] sm:text-xs pl-4"
                     >
                       {queryName}
                     </SelectItem>
@@ -68,14 +68,14 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
             <div>
               {rightColumn.map(([category, queries]) => (
                 <div key={category}>
-                  <SelectItem value={category} disabled className="text-[0.6rem] sm:text-xs font-bold text-muted-foreground">
+                  <SelectItem value={category} disabled className="text-[0.7rem] sm:text-xs font-bold text-muted-foreground">
                     {category}
                   </SelectItem>
                   {Object.entries(queries).map(([queryName]) => (
                     <SelectItem
                       key={`${category}||${queryName}`}
                       value={`${category}||${queryName}`}
-                      className="text-[0.6rem] sm:text-xs pl-4"
+                      className="text-[0.7rem] sm:text-xs pl-4"
                     >
                       {queryName}
                     </SelectItem>

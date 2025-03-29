@@ -18,7 +18,7 @@ const TableList = () => {
         return (
           <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent  ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' border-0 border-b'}`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
-              <CardTitle className='text-[0.6rem] sm:text-xs'>{tableName}</CardTitle>
+              <CardTitle className='text-[0.7rem] sm:text-xs'>{tableName}</CardTitle>
             </CardHeader>
             <Button 
                     onClick={(e) => setVisibleTables(prev => {
