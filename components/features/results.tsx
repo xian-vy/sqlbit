@@ -17,10 +17,18 @@ export function ResultsTable() {
     );
   }
 
-  if (!queryResults || queryResults.length === 0) {
+  if (!queryResults ) {
     return (
       <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
         No results to display. Run a query to see results.
+      </div>
+    );
+  }
+
+  if ( queryResults.length === 0) {
+    return (
+      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+        Returned 0 rows
       </div>
     );
   }
