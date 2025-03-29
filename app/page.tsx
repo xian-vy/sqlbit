@@ -20,7 +20,7 @@ export default function Home() {
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <div className="flex flex-col items-center min-h-screen">
         <div className="flex justify-between px-5 md:px-10 items-center w-full border-b h-10 md:h-14">
-          <h1 className="text-xs md:text-sm font-semibold text-center">SQLBit</h1>
+          <h1 className="text-xs md:text-sm font-semibold text-center">SQLBIT</h1>
           <ModeToggle />
         </div>
         <main className="w-full mx-auto  sm:px-5 xl:px-10 flex-1">
