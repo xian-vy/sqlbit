@@ -34,14 +34,21 @@ export default function Home() {
               isLgScreen ? 60 : 75
             }>
               <div className={`h-full w-full ${isXsScreen ? "border-x border-y-0" : "border-r-0 border-l border-y-0"}`}>
-                <QueryBuilder />
-                <ResultsTable />
+                <ResizablePanelGroup direction="vertical" className="h-full">
+                  <ResizablePanel defaultSize={50}>
+                    <QueryBuilder />
+                  </ResizablePanel>
+                  <ResizableHandle withHandle />
+                  <ResizablePanel defaultSize={50}>
+                    <ResultsTable />
+                  </ResizablePanel>
+                </ResizablePanelGroup>
               </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
             <ResizablePanel defaultSize={isXsScreen ? 40 : 25}>
-              <div className={`h-full ${isXsScreen ? "border-x":"border-r"}`}>
-                <ScrollArea className="h-[90vh]">
+              <div className={`h-full ${isXsScreen ? "border-x":"border-r"} `}>
+                <ScrollArea className="h-[90vh] ">
                   <TableList />
                 </ScrollArea>
               </div>

@@ -1,7 +1,6 @@
 import { tableData, TableName } from '@/data/tables';
 import { useRef, useState } from 'react';
 import { Textarea } from '../ui/textarea';
-import { ExampleQuerySelector } from './example-query-selector';
 import { useSqlStore } from '@/store/sqlStore';
 
 export function SqlEditor() {
@@ -73,12 +72,13 @@ export function SqlEditor() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative !h-full">
       <Textarea
         ref={textareaRef}
         value={rawQuery}
+        spellCheck={false}
         onChange={handleInput}
-        className="w-full h-48 text-xs sm:!text-sm  p-2 border rounded-none shadow-none focus:outline-none focus:ring-2 focus:ring-ring"
+        className="w-full !h-auto text-xs sm:!text-sm resize-none  p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
         placeholder="Enter your SQL query here..."
       />
       {showSuggestions && (
@@ -97,9 +97,6 @@ export function SqlEditor() {
           ))}
         </div>
       )}
-      <div className="absolute bottom-2 md:top-2 right-3">
-          <ExampleQuerySelector onQuerySelect={setRawQuery} />
-      </div>
     </div>
   );
 }

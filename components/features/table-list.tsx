@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { Card,  CardHeader, CardTitle } from "@/components/ui/card";
-import { ExpandButton } from "@/components/ui/expand-button";
+import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { tableData } from '@/data/tables';
 import { ChevronDown, ChevronUp, KeySquare, Link } from 'lucide-react';
+import { useState } from 'react';
 import { Button } from '../ui/button';
 
 const TableList = () => {
@@ -17,33 +16,26 @@ const TableList = () => {
         const isVisible = visibleTables.has(tableName);
         
         return (
-          <Card key={tableName} className={`py-2  gap-2 !shadow-none   rounded-none bg-transparent relative ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' border-0 border-b'}`}>
-            <CardHeader className="flex flex-row items-center justify-between px-4">
+          <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent  ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' border-0 border-b'}`}>
+            <CardHeader className="flex flex-row items-center justify-start px-4">
               <CardTitle className='text-sm'>{tableName}</CardTitle>
-              <div className="flex items-center gap-2">
-                    {!isExpanded && 
-                        <Button 
-                            onClick={() => setVisibleTables(prev => {
-                              const newSet = new Set(prev);
-                              if (isVisible) {
-                                newSet.delete(tableName);
-                              } else {
-                                newSet.add(tableName);
-                              }
-                              return newSet;
-                            })}
-                            variant="ghost"   
-                            className="h-7 w-7 cursor-pointer bg-muted "
-                          >
-                            {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5" /> : <ChevronDown strokeWidth={1.5} className="!w-3.5 !h-3.5" />}
-                          </Button>
-                      }
-                      <ExpandButton 
-                        isExpanded={isExpanded} 
-                        onClick={() => setExpandedTable(isExpanded ? null : tableName)} 
-                      />
-              </div>
             </CardHeader>
+            <Button 
+                    onClick={(e) => setVisibleTables(prev => {
+                        e.stopPropagation();
+                      const newSet = new Set(prev);
+                      if (isVisible) {
+                        newSet.delete(tableName);
+                      } else {
+                        newSet.add(tableName);
+                      }
+                      return newSet;
+                    })}
+                    variant="ghost"   
+                    className="absolute top-0 right-0 h-7 w-7 cursor-pointer !rounded-none !bg-background border-0"
+                  >
+                    {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5" /> : <ChevronDown strokeWidth={1.5} className="!w-3.5 !h-3.5" />}
+              </Button>
             
             <ScrollArea className={`${isExpanded ? 'h-[80vh]' : isVisible ? 'h-auto' : 'h-12'}`}>
               <ScrollArea className="w-full">

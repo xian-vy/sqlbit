@@ -1,10 +1,10 @@
 import { useSqlStore } from "@/store/sqlStore";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Maximize2, Minimize2 } from "lucide-react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "../ui/card";
-import { ExpandButton } from "../ui/expand-button";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
 export function ResultsTable() {
   const { queryResults, queryError } = useSqlStore();
@@ -31,21 +31,23 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`p-4 !shadow-none border-none bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card' : ''} gap-2`}>
+    <Card className={`p-4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
     <div className="flex justify-between items-center ">
       <span className="text-xs text-muted-foreground">
         {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
       </span>
-       <ExpandButton 
-                isExpanded={expandedResults} 
-                onClick={() => setExpandedResults(!expandedResults)} 
-        />
+      <Button
+          variant="ghost"  
+          onClick={() => setExpandedResults(!expandedResults)} 
+          className={`h-7 w-7 cursor-pointer  !rounded-none !bg-background border-0 z-10 `}>
+          {expandedResults ? <Minimize2 strokeWidth={2} className="!w-3 !h-3" /> : <Maximize2 strokeWidth={2} className="!w-3 !h-3"  />}
+        </Button>
       </div>
 
     <div className="overflow-auto">
       <Table>
         <TableHeader>
-          <TableRow>
+          <TableRow className="!border-0">
             {columns.map((column) => (
               <TableHead key={column}>{column}</TableHead>
             ))}

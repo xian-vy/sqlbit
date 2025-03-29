@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import alasql from "alasql/dist/alasql.min";
 import { tableData } from "@/data/tables";
 import { SqlQueryResult } from "@/types/sql";
+import { ExampleQuerySelector } from "./example-query-selector";
 
 
 export function QueryBuilder() {
@@ -29,7 +30,6 @@ export function QueryBuilder() {
         alasql(`INSERT INTO ${tableName} SELECT * FROM ?`, [data]);
       });
 
-      console.log("Executing query:", rawQuery);
       const results = alasql(rawQuery) as SqlQueryResult[];
       
       setQueryResults(results);
@@ -61,27 +61,29 @@ export function QueryBuilder() {
   }, [rawQuery]);
 
   return (
-    <Card className="p-2 sm:p-4 !shadow-none border-0 border-b rounded-none bg-transparent gap-0">
+    <Card className="!shadow-none border-0 rounded-none bg-transparent gap-0 py-0 h-full relative">
       <SqlEditor/>
-      <div className="flex gap-2 justify-between items-center w-full mt-2 xl:mt-3 2xl:mt-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={handleClearQuery}
-          className="flex flex-col items-center gap-0 text-[0.65rem] sm:text-xs"
-        >
-          Clear All
-          <span className="text-[0.55rem] text-muted-foreground hidden sm:block">Esc</span>
-        </Button>
-        <Button
-          variant="outline"
-            size="sm"
-          onClick={handleRunQuery}
-          className="flex flex-col items-center gap-0 text-[0.65rem] sm:text-xs"
-        >
-          Run Query
-          <span className="text-[0.55rem] text-muted-foreground hidden sm:block">Alt + X</span>
-        </Button>
+      <div className="absolute bottom-0 left-0 flex  justify-start items-center w-full">
+          <ExampleQuerySelector onQuerySelect={setRawQuery} />
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleClearQuery}
+              className="flex flex-col items-center gap-0 text-[0.6rem] sm:text-xs !rounded-none border-x-0 border-b-0 !bg-background !font-normal" 
+            >
+              Clear All
+              <span className="text-[0.55rem] text-muted-foreground hidden sm:block ">Esc</span>
+            </Button>
+            <Button
+              variant="outline"
+                size="sm"
+              onClick={handleRunQuery}
+              className="flex flex-col items-center gap-0 text-[0.6rem] sm:text-xs !rounded-none  border-b-0 !bg-background  !font-normal"
+            >
+              Run Query
+              <span className="text-[0.55rem] text-muted-foreground hidden sm:block ">Alt + X</span>
+            </Button>
       </div>
     </Card>
   );

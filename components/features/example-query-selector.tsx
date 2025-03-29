@@ -42,10 +42,10 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
   return (
     <div className="self-end">
       <Select onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[140px] sm:w-[160px] shadow-none text-[0.6rem] sm:text-xs !h-6 sm:h-auto">
+        <SelectTrigger size="sm" className="w-[140px] sm:w-[160px] shadow-none text-[0.6rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
           <SelectValue placeholder="Load example query" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="shadow-none rounded-none">
           <div className="grid grid-cols-2 gap-2">
             <div>
               {leftColumn.map(([category, queries]) => (
