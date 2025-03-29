@@ -109,14 +109,13 @@ SELECT p.name, p.price,
 FROM products p`,
 
     "EXISTS Clause": `-- Finds customers who have made large purchases (over 1000)
-SELECT c.name
-FROM customers c
-WHERE EXISTS (
-  SELECT 1 
+  SELECT   c.name, SUM(o2.quantity * o2.priceAtTime) as [Total Order Amount]
   FROM orders o 
-  WHERE o.customerId = c.id 
-  AND o.totalAmount > 1000
-)`,
+    JOIN orderItems o2 ON o.id = o2.orderId
+    JOIN customers c ON o.customerId = c.id
+  GROUP BY c.name
+ HAVING SUM(o2.quantity * o2.priceAtTime) > 1000
+`,
   },
 
   "Advanced Queries": {
