@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { Button } from '../ui/button';
 
 const TableList = () => {
-    const [expandedTable, setExpandedTable] = useState<string | null>(null);
+    const [expandedTable] = useState<string | null>(null);
     const [visibleTables, setVisibleTables] = useState<Set<string>>(() => new Set(Object.keys(tableData)));
     return Object.entries(tableData).map(([tableName, data]) => {
         type RowType = typeof data[0];
