@@ -26,7 +26,7 @@ export default function Home() {
           <h1 className="text-xs md:text-sm 2xl:text-base font-bold text-center">SQLBIT</h1>
           <ModeToggle />
         </div>
-        <main className="w-full mx-auto  sm:px-5 xl:px-10 flex-1">
+        <main className="w-full mx-auto  md:px-5 xl:px-10 flex-1">
           <ResizablePanelGroup 
             direction={isXsScreen ? "vertical" : "horizontal"} 
             className="min-h-[calc(100vh-3.5rem)]"
@@ -43,8 +43,8 @@ export default function Home() {
                   </ResizablePanel>
                   <ResizableHandle withHandle />
                   <ResizablePanel defaultSize={50}>
-                      <ScrollArea className="h-[80vh] ">
-                          <ScrollArea className="w-full">
+                      <ScrollArea className="w-full h-[100vh] ">
+                          <ScrollArea className="w-full h-[100vh] ">
                               <ResultsTable />
                            </ScrollArea>
                            <ScrollBar orientation="horizontal" />
