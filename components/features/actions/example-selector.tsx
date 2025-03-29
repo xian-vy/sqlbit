@@ -5,14 +5,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "../../ui/select";
 import { useSqlStore } from "@/store/sqlStore";
 import { useEffect, useState } from "react";
 
 
 
 export function ExampleQuerySelector() {
-  const {  rawQuery, setRawQuery } = useSqlStore();
+  const { rawQuery, setRawQuery } = useSqlStore();
   const [currentSelection, setCurrentSelection] = useState<string>("");
 
   const handleExampleSelect = (value: string) => {
@@ -53,9 +53,9 @@ export function ExampleQuerySelector() {
 
   return (
     <div className="self-end">
-      <Select  value={currentSelection} onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[140px] sm:w-[150px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
-          <SelectValue placeholder="Load example" />
+      <Select value={currentSelection} onValueChange={handleExampleSelect}>
+        <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
+          <SelectValue placeholder="Examples" />
         </SelectTrigger>
         <SelectContent className="shadow-none rounded-none">
           <div className="grid grid-cols-2 gap-2">

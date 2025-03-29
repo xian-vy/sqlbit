@@ -1,6 +1,6 @@
 import alasql from 'alasql';
 import { SqlQueryResult } from '@/types/sql';
-import { tableData } from '@/data/tables';
+import { tableData } from '@/data/schema';
 
 // Initialize AlaSQL with our predefined tables
 export const initializeAlaSql = () => {

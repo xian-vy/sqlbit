@@ -34,7 +34,7 @@ export default function Home() {
             <ResizablePanel defaultSize={
               isXsScreen ? 60 : 
               !isMdScreen ? 100 :
-              isLgScreen ? 60 : 75
+              isLgScreen ? 75 : 75
             }>
               <div className={`h-full w-full ${isXsScreen ? "border-0" : "border-r-0 border-l border-y-0"}`}>
                 <ResizablePanelGroup direction="vertical" className="h-full">

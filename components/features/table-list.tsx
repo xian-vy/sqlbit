@@ -1,7 +1,7 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { tableData } from '@/data/tables';
+import { tableData } from '@/data/schema';
 import { ChevronDown, ChevronUp, KeySquare, Link } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';

@@ -1,4 +1,4 @@
-import { tableData, TableName } from '@/data/tables';
+import { tableData, TableName } from '@/data/schema';
 import { useRef, useState } from 'react';
 import { Textarea } from '../ui/textarea';
 import { useSqlStore } from '@/store/sqlStore';
