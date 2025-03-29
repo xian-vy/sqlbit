@@ -6,13 +6,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { useSqlStore } from "@/store/sqlStore";
+import { useEffect, useState } from "react";
 
-interface Props {
-  onQuerySelect: (query: string) => void;
-}
 
-export function ExampleQuerySelector({ onQuerySelect }: Props) {
+
+export function ExampleQuerySelector() {
+  const {  rawQuery, setRawQuery } = useSqlStore();
+  const [currentSelection, setCurrentSelection] = useState<string>("");
+
   const handleExampleSelect = (value: string) => {
+    setCurrentSelection(value);
+
     try {
       const [category, queryName] = value.split('||') as [keyof typeof exampleQueries, string];
       const categoryQueries = exampleQueries[category];
@@ -28,11 +33,18 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
         return;
       }
 
-      onQuerySelect(selectedQuery);
+      setRawQuery(selectedQuery);
     } catch (error) {
       console.error('Error selecting example query:', error);
     }
   };
+
+  useEffect(() => {
+   if (rawQuery.trim() === '') {
+    setCurrentSelection('');
+   }
+  }, [rawQuery])
+  
 
   const categories = Object.entries(exampleQueries);
   const midPoint = Math.ceil(categories.length / 2);
@@ -41,7 +53,7 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
 
   return (
     <div className="self-end">
-      <Select onValueChange={handleExampleSelect}>
+      <Select  value={currentSelection} onValueChange={handleExampleSelect}>
         <SelectTrigger size="sm" className="w-[140px] sm:w-[150px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
           <SelectValue placeholder="Load example" />
         </SelectTrigger>

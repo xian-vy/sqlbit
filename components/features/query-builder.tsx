@@ -64,7 +64,7 @@ export function QueryBuilder() {
     <Card className="!shadow-none border-0 rounded-none bg-transparent gap-0 py-0 h-full relative">
       <SqlEditor/>
       <div className="absolute bottom-0 left-0 flex  justify-start items-center w-full">
-          <ExampleQuerySelector onQuerySelect={setRawQuery} />
+          <ExampleQuerySelector  />
 
             <Button
               variant="outline"

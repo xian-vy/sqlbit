@@ -37,9 +37,26 @@ export function SqlEditor() {
 
     if (currentWord.length > 0) {
       const allSuggestions = getAllSuggestions();
-      const filtered = allSuggestions.filter(s => 
-        s.toLowerCase().startsWith(currentWord)
-      );
+      let filtered : string[] = [];
+      
+      if (currentWord.includes('.')) {
+        const [tableName, columnPrefix = ''] = currentWord.split('.');
+        const table = tableName as TableName;
+        
+        if (tableData[table]) {
+          const columns = Object.keys(tableData[table][0] || {});
+          filtered = columns
+            .filter(col => col.toLowerCase().startsWith(columnPrefix))
+            .map(col => `${tableName}.${col}`);
+        } else {
+          filtered = [];
+        }
+      } else {
+        filtered = allSuggestions.filter(s => 
+          s.toLowerCase().startsWith(currentWord)
+        );
+      }
+
       setSuggestions(filtered);
       setShowSuggestions(filtered.length > 0);
 
@@ -87,6 +104,17 @@ export function SqlEditor() {
     const newText = textBeforeCursor.slice(0, -lastWord.length) + suggestion + textAfterCursor;
     setRawQuery(newText);
     setShowSuggestions(false);
+
+    // Calculate new cursor position 
+    const newCursorPos = cursorPos - lastWord.length + suggestion.length;
+        
+    textareaRef.current?.focus();
+    setTimeout(() => {
+      if (textareaRef.current) {
+        textareaRef.current.selectionStart = newCursorPos;
+        textareaRef.current.selectionEnd = newCursorPos;
+      }
+    }, 0);
   };
   
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
