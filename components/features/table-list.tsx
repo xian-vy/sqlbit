@@ -4,7 +4,7 @@ import { ExpandButton } from "@/components/ui/expand-button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { tableData } from '@/data/tables';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, KeySquare, Link } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const TableList = () => {
@@ -37,10 +37,14 @@ const TableList = () => {
                           const isPrimaryKey = column.toLowerCase().includes('id') && column.length === 2;
                           const isForeignKey = column.toLowerCase().includes('id') && column.length > 2;
                           return (
-                            <TableHead key={column} className="whitespace-nowrap">
-                              {isPrimaryKey && '🔑 '}
-                              {isForeignKey && '🔗 '}
+                            <TableHead key={column} >
+                             
+                              <p className='flex items-center gap-1.5'>
+                              {isPrimaryKey && <KeySquare strokeWidth={1} className="!text-black dark:!text-white w-3.5 h-3.5" />}
+                              {isForeignKey && <Link strokeWidth={1} className="!text-black dark:!text-white w-3.5 h-3.5" />}
                               {column}
+
+                              </p>
                             </TableHead>
                           );
                         })}
@@ -52,11 +56,7 @@ const TableList = () => {
                           <TableRow key={index}>
                             {columns.map((column) => (
                               <TableCell key={column}>
-                             {columns.map((column) => (
-                                  <TableCell key={column}>
-                                    {row[column as keyof RowType] === null ? 'NULL' : String(row[column as keyof RowType])}
-                                  </TableCell>
-                                ))}
+                                {row[column as keyof RowType] === null ? 'NULL' : String(row[column as keyof RowType])}
                               </TableCell>
                             ))}
                           </TableRow>
