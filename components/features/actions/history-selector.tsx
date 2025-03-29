@@ -40,7 +40,7 @@ useEffect(() => {
         {queryHistory.length > 0 && (
           <div className="col-span-2 mb-2">
             <SelectItem value="history" disabled className="text-[0.7rem] sm:text-xs font-bold text-muted-foreground">
-              Recent Queries
+              Recent Queries (15 max)
             </SelectItem>
             {queryHistory.map((query, index) => (
               <div key={`history-${index}`} className="flex items-center group relative">
