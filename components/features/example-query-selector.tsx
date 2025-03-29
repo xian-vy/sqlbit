@@ -42,7 +42,7 @@ export function ExampleQuerySelector({ onQuerySelect }: Props) {
   return (
     <div className="self-end">
       <Select onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[200px] shadow-none text-xs">
+        <SelectTrigger size="sm" className="w-[140px] sm:w-[160px] shadow-none text-[0.6rem] sm:text-xs !h-6 sm:h-auto">
           <SelectValue placeholder="Load example query" />
         </SelectTrigger>
         <SelectContent>

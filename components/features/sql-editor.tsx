@@ -1,14 +1,12 @@
 import { tableData, TableName } from '@/data/tables';
 import { useRef, useState } from 'react';
 import { Textarea } from '../ui/textarea';
+import { ExampleQuerySelector } from './example-query-selector';
+import { useSqlStore } from '@/store/sqlStore';
 
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-  className?: string;
-}
+export function SqlEditor() {
+  const {  rawQuery, setRawQuery } = useSqlStore();
 
-export function SqlEditor({ value, onChange, className }: Props) {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ top: 0, left: 0 });
@@ -25,7 +23,7 @@ export function SqlEditor({ value, onChange, className }: Props) {
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const newValue = e.target.value;
-    onChange(newValue);
+    setRawQuery(newValue);
 
     const cursorPos = e.target.selectionStart;
     const textBeforeCursor = newValue.slice(0, cursorPos);
@@ -65,12 +63,12 @@ export function SqlEditor({ value, onChange, className }: Props) {
 
   const handleSuggestionClick = (suggestion: string) => {
     const cursorPos = textareaRef.current?.selectionStart || 0;
-    const textBeforeCursor = value.slice(0, cursorPos);
-    const textAfterCursor = value.slice(cursorPos);
+    const textBeforeCursor = rawQuery.slice(0, cursorPos);
+    const textAfterCursor = rawQuery.slice(cursorPos);
     const words = textBeforeCursor.split(/\s+/);
     const lastWord = words[words.length - 1];
     const newText = textBeforeCursor.slice(0, -lastWord.length) + suggestion + textAfterCursor;
-    onChange(newText);
+    setRawQuery(newText);
     setShowSuggestions(false);
   };
 
@@ -78,9 +76,9 @@ export function SqlEditor({ value, onChange, className }: Props) {
     <div className="relative">
       <Textarea
         ref={textareaRef}
-        value={value}
+        value={rawQuery}
         onChange={handleInput}
-        className={className}
+        className="w-full h-48 text-xs sm:!text-sm  p-2 border rounded-none shadow-none focus:outline-none focus:ring-2 focus:ring-ring"
         placeholder="Enter your SQL query here..."
       />
       {showSuggestions && (
@@ -99,6 +97,9 @@ export function SqlEditor({ value, onChange, className }: Props) {
           ))}
         </div>
       )}
+      <div className="absolute bottom-2 md:top-2 right-3">
+          <ExampleQuerySelector onQuerySelect={setRawQuery} />
+      </div>
     </div>
   );
 }
