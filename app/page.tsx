@@ -5,7 +5,7 @@ import TableList from "@/components/features/table-list";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { Loader2 } from "lucide-react";
 
@@ -23,7 +23,7 @@ export default function Home() {
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <div className="flex flex-col items-center min-h-screen">
         <div className="flex justify-between px-4 md:px-6 xl:px-10 items-center w-full border-b h-10 md:h-14">
-          <h1 className="text-xs md:text-sm font-semibold text-center">SQLBIT</h1>
+          <h1 className="text-xs md:text-sm 2xl:text-base font-bold text-center">SQLBIT</h1>
           <ModeToggle />
         </div>
         <main className="w-full mx-auto  sm:px-5 xl:px-10 flex-1">
@@ -44,7 +44,10 @@ export default function Home() {
                   <ResizableHandle withHandle />
                   <ResizablePanel defaultSize={50}>
                       <ScrollArea className="h-[80vh] ">
-                           <ResultsTable />
+                          <ScrollArea className="w-full">
+                              <ResultsTable />
+                           </ScrollArea>
+                           <ScrollBar orientation="horizontal" />
                      </ScrollArea>
                   </ResizablePanel>
                 </ResizablePanelGroup>
