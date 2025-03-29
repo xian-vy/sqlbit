@@ -1,5 +1,6 @@
 import { tableData, TableName } from '@/data/tables';
 import { useRef, useState } from 'react';
+import { Textarea } from '../ui/textarea';
 
 interface Props {
   value: string;
@@ -75,7 +76,7 @@ export function SqlEditor({ value, onChange, className }: Props) {
 
   return (
     <div className="relative">
-      <textarea
+      <Textarea
         ref={textareaRef}
         value={value}
         onChange={handleInput}
