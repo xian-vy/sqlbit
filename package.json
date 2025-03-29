@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --legacy-peer-deps",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel-build": "npm install --force && npm run build"
   },
   "dependencies": {
     "@radix-ui/react-dropdown-menu": "^2.1.6",
