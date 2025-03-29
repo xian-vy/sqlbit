@@ -125,7 +125,7 @@ export function SqlEditor() {
       } else if (e.key === 'ArrowUp') {
         e.preventDefault();
         setSelectedIndex((prev) => (prev - 1 + suggestions.length) % suggestions.length);
-      } else if (e.key === 'Enter' && suggestions.length > 0) {
+      } else if ((e.key === 'Enter' || e.key === 'Tab') && suggestions.length > 0) {
         e.preventDefault();
         handleSuggestionClick(suggestions[selectedIndex]);
       } else if (e.key === 'Escape') {
