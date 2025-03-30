@@ -4,10 +4,9 @@ import { useSqlStore } from "@/store/sqlStore";
 import { SqlQueryResult } from "@/types/sql";
 import alasql from "alasql/dist/alasql.min";
 import { useEffect } from "react";
-
+import { handleSqlError } from "@/utils/sql-error-handler";
 
 const RunQuery = () => {
-
     const { setQueryResults, setQueryError, rawQuery, setRawQuery, addToHistory } = useSqlStore();
 
     const handleRunQuery = () => {
@@ -33,7 +32,11 @@ const RunQuery = () => {
           setQueryError(null);
           addToHistory(rawQuery);  
         } catch (error) {
-          setQueryError(error instanceof Error ? error.message : "An error occurred");
+          setQueryError(
+            error instanceof Error 
+              ? handleSqlError(error)
+              : "An unexpected error occurred"
+          );
           setQueryResults(null);
         }
       };

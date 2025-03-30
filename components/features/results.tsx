@@ -11,7 +11,7 @@ export function ResultsTable() {
 
   if (queryError) {
     return (
-      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] text-red-600 dark:!text-red-400 flex items-center justify-center">
         {queryError}
       </div>
     );
@@ -19,7 +19,7 @@ export function ResultsTable() {
 
   if (!queryResults ) {
     return (
-      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center">
         No results to display. Run a query to see results.
       </div>
     );
@@ -27,7 +27,7 @@ export function ResultsTable() {
 
   if ( queryResults.length === 0) {
     return (
-      <div className="text-[0.7rem] sm:text-xs  p-5 text-center text-gray-500 h-full flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center">
         Returned 0 rows
       </div>
     );
