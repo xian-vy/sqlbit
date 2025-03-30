@@ -18,7 +18,7 @@ const TableList = () => {
         return (
           <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent  ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' border-0 border-b'}`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
-              <CardTitle className='text-[0.7rem] sm:text-xs'>{tableName}</CardTitle>
+              <CardTitle className='text-[0.7rem] sm:text-xs lg:text-[0.8rem]'>{tableName}</CardTitle>
             </CardHeader>
             <Button 
                     onClick={(e) => setVisibleTables(prev => {
@@ -42,14 +42,14 @@ const TableList = () => {
                 <div className="text-xs">
                   <Table>
                     <TableHeader>
-                      <TableRow  className={`${isVisible ? "" :"!border-b-0"}`}>
+                      <TableRow>
                         {columns.map((column) => {
                           const isPrimaryKey = column.toLowerCase().includes('id') && column.length === 2;
                           const isForeignKey = column.toLowerCase().includes('id') && column.length > 2;
                           return (
                             <TableHead key={column} >
                              
-                              <p className='flex items-center gap-1.5'>
+                              <p className='flex items-center justify-center gap-1.5'>
                               {isPrimaryKey && <KeySquare strokeWidth={1} className="!text-black dark:!text-white w-3.5 h-3.5" />}
                               {isForeignKey && <Link strokeWidth={1} className="!text-black dark:!text-white w-3.5 h-3.5" />}
                               {column}
@@ -63,7 +63,7 @@ const TableList = () => {
                     {(isVisible || isExpanded) && (
                       <TableBody>
                         {data.map((row, index) => (
-                          <TableRow key={index} className='border-0'>
+                          <TableRow key={index}>
                             {columns.map((column) => (
                               <TableCell key={column}>
                                 {row[column as keyof RowType] === null ? 'NULL' : String(row[column as keyof RowType])}

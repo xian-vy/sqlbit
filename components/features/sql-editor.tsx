@@ -142,7 +142,7 @@ export function SqlEditor() {
         spellCheck={false}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
-        className="w-full !h-full text-xs lg:!text-[0.8rem] 2xl:!text-sm resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
+        className="w-full !h-full text-xs sm:!text-[0.8rem] 2xl:!text-sm resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
         placeholder="Enter your SQL query here..."
       />
       <Popover open={showSuggestions} onOpenChange={setShowSuggestions}>

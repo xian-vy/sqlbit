@@ -13,9 +13,9 @@ type ExampleQueries = {
 
 export const exampleQueries: ExampleQueries = {
   "Basic Queries": {
-    "Simple SELECT": `SELECT id, name, price 
-FROM products 
-WHERE categoryId = 1`,
+    "Simple SELECT": `SELECT *
+FROM products, customers, orders
+`,
     
     "DISTINCT Values": `SELECT DISTINCT c.name as category
 FROM products p

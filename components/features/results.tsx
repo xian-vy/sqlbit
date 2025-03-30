@@ -36,8 +36,8 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`p-4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
-    <div className="flex justify-between items-center ">
+    <Card className={`4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
+    <div className="flex justify-between items-center px-2">
       <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
         {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
       </span>
@@ -52,7 +52,7 @@ export function ResultsTable() {
     <div className="overflow-auto">
       <Table>
         <TableHeader>
-          <TableRow className="!border-0">
+          <TableRow>
             {columns.map((column) => (
               <TableHead key={column}>{column}</TableHead>
             ))}
@@ -60,7 +60,7 @@ export function ResultsTable() {
         </TableHeader>
         <TableBody>
           {queryResults.map((row, rowIndex) => (
-            <TableRow key={rowIndex} className="!border-0">
+            <TableRow key={rowIndex} >
               {columns.map((column) => (
                 <TableCell key={`${rowIndex}-${column}`}>
                   {row[column] === null ? 'NULL' : String(row[column])}

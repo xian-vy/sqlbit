@@ -32,7 +32,7 @@ useEffect(() => {
    }, [rawQuery])
   return (
     <Select value={currentSelection} onValueChange={handleHistorySelect}>
-    <SelectTrigger size="sm" className="w-[85px] sm:w-[90px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
+    <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
       <SelectValue placeholder="History" />
     </SelectTrigger>
     <SelectContent className="shadow-none rounded-none">
