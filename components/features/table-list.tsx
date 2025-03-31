@@ -16,7 +16,7 @@ const TableList = () => {
         const isVisible = visibleTables.has(tableName);
         
         return (
-          <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent  ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' border-0 border-b'}`}>
+          <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent border-0 border-b   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
               <CardTitle className='text-[0.7rem] sm:text-xs lg:text-[0.8rem]'>{tableName}</CardTitle>
             </CardHeader>
@@ -37,8 +37,8 @@ const TableList = () => {
                     {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5" /> : <ChevronDown strokeWidth={1.5} className="!w-3.5 !h-3.5" />}
               </Button>
             
-            <ScrollArea className={`${isExpanded ? 'h-[80vh]' : isVisible ? 'h-auto' : 'h-12'}`}>
-              <ScrollArea className="w-full">
+            <ScrollArea className={`h-full`}>
+              <ScrollArea className="w-full h-auto">
                 <div className="text-xs">
                   <Table>
                     <TableHeader>

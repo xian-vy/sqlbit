@@ -36,7 +36,7 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`4 !shadow-none  bg-transparent ${expandedResults ? 'fixed inset-4 z-50 bg-card border rounded-none' : 'border-none'} gap-2`}>
+    <Card className={`4 !shadow-none  bg-transparent rounded-none border-0 border-b  ${expandedResults ? 'fixed inset-4 z-50 bg-card  ' : ''} gap-2`}>
     <div className="flex justify-between items-center px-2">
       <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
         {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
