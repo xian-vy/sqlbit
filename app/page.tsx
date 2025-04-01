@@ -43,12 +43,7 @@ export default function Home() {
                   </ResizablePanel>
                   <ResizableHandle withHandle className="bg-transparent"/>
                   <ResizablePanel defaultSize={50}>
-                      <ScrollArea className="w-full h-[100vh] ">
-                          <ScrollArea className="w-full h-[100vh] ">
                               <ResultsTable />
-                           </ScrollArea>
-                           <ScrollBar orientation="horizontal" />
-                     </ScrollArea>
                   </ResizablePanel>
                 </ResizablePanelGroup>
               </div>
