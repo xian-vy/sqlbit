@@ -66,7 +66,7 @@ const RunQuery = () => {
         variant="outline"
         size="sm"
         onClick={handleRunQuery}
-        className="flex flex-col items-center gap-0 text-[0.7rem] sm:text-xs !rounded-none border-r-0 border-b-0 !bg-background  !font-normal"
+        className="flex flex-col items-center gap-0 text-[0.7rem] sm:text-xs !rounded-none border-r-0 border-b-0 !bg-background  !font-normal text-[#FF8C00]"
     >
             Run Query
         <span className="text-[0.55rem] text-muted-foreground hidden sm:block ">Alt + X</span>

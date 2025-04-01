@@ -1,64 +1,33 @@
-'use client'
-import { QueryBuilder } from "@/components/features/query-builder";
-import { ResultsTable } from "@/components/features/results";
-import TableList from "@/components/features/table-list";
-import { ModeToggle } from "@/components/mode-toggle";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { useScreenSize } from "@/hooks/useScreenSize";
-import { Loader2 } from "lucide-react";
+import { Pixelify_Sans } from "next/font/google";
+import Link from "next/link";
 
-export default function Home() {
-  const screenWidth = useScreenSize();
-  if (!screenWidth) {
-    return <div className="flex min-h-screen w-full justify-center items-center bg-background">
-             <Loader2 className="animate-spin h-5 w-5" />
-           </div>;
-  }
-  const isXsScreen = screenWidth <= 640
-  const isMdScreen = screenWidth >= 768;
-  const isLgScreen = screenWidth >= 1024;
+const pxel = Pixelify_Sans({
+  variable: "--font-pixelify",
+  });
+  
+
+export default function Landing() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-      <div className="flex flex-col items-center min-h-screen">
-        <div className="flex justify-between px-4 sm:px-6 xl:px-10 items-center w-full border-b h-10 md:h-12">
-          <h1 className="text-xs md:text-sm 2xl:text-base font-bold text-center">SQLBIT</h1>
-          <ModeToggle />
+    <div className={`flex flex-col min-h-screen bg-slate-900 ${pxel.className} font-pixelify antialiased`}>
+      <main className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-8">
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-light tracking-tighter font-pixelify">
+            <span className="text-[#FF8C00]">SQL</span>
+            <span className="text-slate-100">BIT</span>
+          </h1>
+          <p className="text-slate-400 text-base sm:text-base 2xl:text-lg max-w-2xl mx-auto">
+            No Fuss SQL Playground with prebuilt queries and tables.
+          </p>
+          <div className="mt-8">
+            <Link
+              href="/app"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-slate-900 bg-[#FF8C00] hover:bg-[#FF9F33] transition-colors duration-200"
+            >
+              Try it out
+            </Link>
+          </div>
         </div>
-        <main className="w-full mx-auto  sm:px-5 md:px-10 2xl:px-16 flex-1">
-          <ResizablePanelGroup 
-            direction={isLgScreen  ? "horizontal" : "vertical"} 
-            className="min-h-[calc(100vh-3.5rem)]"
-          >
-            <ResizablePanel defaultSize={
-              isXsScreen ? 60 : 
-              !isMdScreen ? 100 :
-              isLgScreen ? 75 : 25
-            }>
-              <div className={`h-full w-full ${isXsScreen ? "border-0" : "border-x"}`}>
-                <ResizablePanelGroup direction="vertical" className="h-full">
-                  <ResizablePanel defaultSize={50}>
-                    <QueryBuilder />
-                  </ResizablePanel>
-                  <ResizableHandle withHandle className="bg-transparent"/>
-                  <ResizablePanel defaultSize={50}>
-                              <ResultsTable />
-                  </ResizablePanel>
-                </ResizablePanelGroup>
-              </div>
-            </ResizablePanel>
-            <ResizableHandle withHandle className="lg:bg-transparent" />
-            <ResizablePanel defaultSize={isXsScreen ? 40 : 25}>
-              <div className={`h-full border-0 ${isLgScreen ? " border-r":"border-x"} `}>
-                <ScrollArea className="h-[90vh] ">
-                  <TableList />
-                </ScrollArea>
-              </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
-        </main>
-      </div>
-    </ThemeProvider>
+      </main>
+    </div>
   );
 }

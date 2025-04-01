@@ -54,10 +54,10 @@ export function ExampleQuerySelector() {
   return (
     <div className="self-end">
       <Select value={currentSelection} onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background">
+        <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background text-[#FF8C00]">
           <SelectValue placeholder="Examples" />
         </SelectTrigger>
-        <SelectContent className="shadow-none rounded-none">
+        <SelectContent className="shadow-none rounded-none border-slate-700 bg-slate-900">
           <div className="grid grid-cols-2 gap-2">
             <div>
               {leftColumn.map(([category, queries]) => (
