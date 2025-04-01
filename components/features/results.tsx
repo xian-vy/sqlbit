@@ -20,7 +20,7 @@ export function ResultsTable() {
 
   if (!queryResults ) {
     return (
-      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center text-slate-400">
         No results to display. Run a query to see results.
       </div>
     );
@@ -28,7 +28,7 @@ export function ResultsTable() {
 
   if ( queryResults.length === 0) {
     return (
-      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center">
+      <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center text-slate-400">
         Returned 0 rows
       </div>
     );
