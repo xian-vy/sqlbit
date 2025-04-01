@@ -142,7 +142,7 @@ export function SqlEditor() {
         spellCheck={false}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
-        className="w-full !h-full text-xs sm:!text-[0.8rem] 2xl:!text-sm resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
+        className="w-full !h-full text-xs sm:!text-[0.8rem] 2xl:!text-sm text-slate-200 resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
         placeholder="Enter your SQL query here..."
       />
       <Popover open={showSuggestions} onOpenChange={setShowSuggestions}>
@@ -158,17 +158,19 @@ export function SqlEditor() {
           />
         </PopoverTrigger>
         <PopoverContent 
-          className="w-48 p-0  !rounded-none !shadow-none" 
+          className="w-48 p-0  !rounded-none !shadow-none !border !border-slate-800" 
           align="start"
           sideOffset={5}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
-          <div className="max-h-56 2xl:max-h-[300px] 3xl:max-h-[350px] overflow-y-auto">
+          <div className="max-h-56 xl:max-h-[350px] 2xl:max-h-[400px] overflow-y-auto">
+              <small className='text-[0.6rem] sm:text-xs text-center flex justify-center text-slate-400 my-2'>Select by TAB or ENTER</small>
+
             {suggestions.map((suggestion, index) => (
               <div
                 key={index}
                 className={`px-4 py-2 hover:bg-accent cursor-pointer text-[0.7rem] sm:text-xs 2xl:text-[0.8rem] ${
-                  index === selectedIndex ? 'bg-accent' : ''
+                  index === selectedIndex ? 'bg-slate-700' : ''
                 }`}
                 onClick={() => handleSuggestionClick(suggestion)}
               >
