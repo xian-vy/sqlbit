@@ -17,6 +17,7 @@ const geist = Geist_Mono({
 });
 const pxel = Pixelify_Sans({
   variable: "--font-pixelify",
+  subsets: ["latin"],
   });
 export default function Home() {
   const screenWidth = useScreenSize();

@@ -3,6 +3,7 @@ import Link from "next/link";
 
 const pxel = Pixelify_Sans({
   variable: "--font-pixelify",
+  subsets: ["latin"],
   });
   
 
