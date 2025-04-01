@@ -5,7 +5,7 @@ import TableList from "@/components/features/table-list";
 import { ModeToggle } from "@/components/mode-toggle";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useScreenSize } from "@/hooks/useScreenSize";
 import { Loader2 } from "lucide-react";
 
