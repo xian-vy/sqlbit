@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sqlbit-cache-v1';
+const CACHE_NAME = 'sqlbit-cache-' + (self.__BUILD_TIME__ || new Date().getTime());
 const urlsToCache = [
   '/',
   '/app',
