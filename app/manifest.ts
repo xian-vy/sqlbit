@@ -23,14 +23,14 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     "screenshots": [
         {
-          "src": "img/512.png",
-          "sizes": "512x512",
+          "src": "img/sqlbit.png",
+          "sizes": "830x603",
           "type": "image/png",
           "form_factor": "wide"
         },
         {
-          "src": "img/512.png",
-          "sizes": "512x512",
+          "src": "img/sqlbit.png",
+          "sizes": "830x603",
           "type": "image/png"
         }
       ]
