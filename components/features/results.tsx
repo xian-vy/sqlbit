@@ -37,7 +37,7 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`!shadow-none  bg-transparent rounded-none border-0 py-2 2xl:py-3 ${expandedResults ? 'fixed inset-4 z-50 bg-card  ' : ''} gap-2`}>
+    <Card className={`!shadow-none  bg-transparent rounded-none border-0  ${expandedResults ? 'fixed inset-4 z-50 bg-slate-900 border !border-slate-700' : 'py-2 2xl:py-3'} gap-2`}>
       <div className="flex justify-between items-center px-2">
         <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
           {queryResults?.length ? `Showing ${queryResults.length} results` : ''}

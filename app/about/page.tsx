@@ -15,7 +15,7 @@ const page = () => {
         <span className="text-slate-100">BIT</span>
       </h1>
       <p className="text-slate-400 text-base sm:text-base 2xl:text-lg max-w-2xl mx-auto">
-        Developed by <a href="https://xianvy.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#FF8C00] hover:text-[#FF9F33] transition-colors duration-200">Xian Vy</a>.
+        Developed by <a href="https://xianvy.vercel.app" target="_blank" rel="noopener noreferrer" className="text-[#FF8C00] hover:text-[#FF9F33] transition-colors duration-200">Xian Vy</a>
         </p>
       <div className="mt-8">
         <Link
