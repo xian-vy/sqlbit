@@ -150,15 +150,15 @@ export function SqlEditor() {
           <div
             style={{
               position: 'absolute',
-              top: `${cursorPosition.y}px`,
-              left: `${cursorPosition.x}px`,
+              top: `${cursorPosition.y -15}px`,
+              left: `${cursorPosition.x - 30}px`,
               width: '1px',
               height: '1px',
             }}
           />
         </PopoverTrigger>
         <PopoverContent 
-          className="w-48 p-0  !rounded-none !shadow-none !border !border-slate-800" 
+          className="w-48 p-0  !rounded-none !shadow-none !border !border-slate-800 !bg-slate-900" 
           align="start"
           sideOffset={5}
           onOpenAutoFocus={(e) => e.preventDefault()}
