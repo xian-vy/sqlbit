@@ -66,7 +66,7 @@ export default function Home() {
             </ResizablePanel>
             <ResizableHandle withHandle className="lg:bg-transparent" />
             <ResizablePanel defaultSize={isXsScreen ? 40 : 25}>
-              <div className={`h-full border-0 ${isLgScreen ? " border-r border-slate-800":"border-x border-slate-800"} `}>
+              <div className={`h-full border-0 ${isLgScreen ? " border-r border-slate-800":"border-x border-t border-slate-800"} `}>
                 <ScrollArea className="h-[90vh] ">
                   <TableList />
                 </ScrollArea>
