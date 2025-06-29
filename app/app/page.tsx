@@ -37,8 +37,8 @@ export default function Home() {
             <span className="text-slate-100">BIT</span>
           </h1>
           <div className="flex items-center gap-2">
-            <Link href="/about" className="text-slate-300 hover:text-slate-100 text-xs xl:text-sm">
-              about
+            <Link href="/about" className="text-slate-300 hover:text-slate-100 text-xs sm:text-[0.8rem]">
+              About
             </Link>
           </div>
         </div>
