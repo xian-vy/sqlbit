@@ -12,7 +12,7 @@ export function QueryBuilder() {
   return (
     <Card className={`!shadow-none  rounded-none bg-transparent gap-0 py-0 h-full relative border-0 border-b`}>
       <SqlEditor/>
-      <div className="absolute bottom-0 flex justify-between items-center w-full !bg-slate-900 z-10">
+      <div className="absolute bottom-0 flex justify-between items-center w-full  z-10">
           <div className="flex items-center">
               <ExampleQuerySelector  />
               <HistorySelector />

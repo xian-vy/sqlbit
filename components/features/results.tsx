@@ -30,14 +30,14 @@ export function ResultsTable() {
     return (
       <div className="text-[0.7rem] sm:text-[0.8rem] 2xl:text-sm p-5 text-center h-[20vh] md:h-[50vh] flex items-center justify-center text-slate-400">
         Returned 0 rows
-      </div>
+      </div>  
     );
   }
 
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`!shadow-none  bg-transparent rounded-none border-0  ${expandedResults ? 'fixed inset-4 z-50 bg-slate-900 border !border-slate-700' : 'py-2 2xl:py-3'} gap-2`}>
+    <Card className={`!shadow-none  bg-transparent rounded-none border-0  ${expandedResults ? 'bg-background fixed inset-4 z-50 border ' : 'py-2 2xl:py-3'} gap-2`}>
       <div className="flex justify-between items-center px-2">
         <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
           {queryResults?.length ? `Showing ${queryResults.length} results` : ''}

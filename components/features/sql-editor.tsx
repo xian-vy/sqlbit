@@ -142,7 +142,7 @@ export function SqlEditor() {
         spellCheck={false}
         onChange={handleInput}
         onKeyDown={handleKeyDown}
-        className="w-full !h-full text-xs sm:!text-[0.8rem] 2xl:!text-sm text-slate-200 resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
+        className="w-full !h-full text-xs sm:!text-[0.8rem] 2xl:!text-sm dark:text-slate-200 resize-none p-2 border-0 !bg-background rounded-none shadow-none focus:!outline-none focus:!ring-0 !leading-relaxed"
         placeholder="Enter your SQL query here..."
       />
       <Popover open={showSuggestions} onOpenChange={setShowSuggestions}>
@@ -158,7 +158,7 @@ export function SqlEditor() {
           />
         </PopoverTrigger>
         <PopoverContent 
-          className="w-48 p-0  !rounded-none !shadow-none !border !border-slate-800 !bg-slate-900" 
+          className="w-48 p-0  !rounded-none !shadow-none !border" 
           align="start"
           sideOffset={5}
           onOpenAutoFocus={(e) => e.preventDefault()}
@@ -170,7 +170,7 @@ export function SqlEditor() {
               <div
                 key={index}
                 className={`px-4 py-2 hover:bg-accent cursor-pointer text-[0.7rem] sm:text-xs 2xl:text-[0.8rem] ${
-                  index === selectedIndex ? 'bg-slate-700' : ''
+                  index === selectedIndex ? 'bg-slate-200 dark:bg-slate-700' : ''
                 }`}
                 onClick={() => handleSuggestionClick(suggestion)}
               >
