@@ -2,7 +2,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { usePagination } from "@/hooks/usePagination";
 import { useSqlStore } from "@/store/sqlStore";
 import { Expand, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
@@ -30,11 +30,6 @@ export function ResultsTable() {
     itemsPerPage,
   });
 
-  useEffect(() => {
-    if (queryResults && queryResults.length > 0) {
-      goToPage(1);
-    }
-  }, [queryResults, goToPage]);
 
   if (queryError) {
     return (
