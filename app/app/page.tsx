@@ -11,8 +11,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from "@/components/ui/sheet";
-import { useScreenSize } from "@/hooks/useScreenSize";
-import { Database, Loader2, SunMoon } from "lucide-react";
+import { Database,  SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Geist_Mono, Pixelify_Sans } from "next/font/google";
 
@@ -24,22 +23,14 @@ const pxel = Pixelify_Sans({
   variable: "--font-pixelify",
   subsets: ["latin"],
   });
+
 export default function Home() {
-  const screenWidth = useScreenSize();
   const {theme, setTheme} = useTheme()
-  if (!screenWidth) {
-    return <div className="flex min-h-screen w-full justify-center items-center ">
-             <Loader2 className="animate-spin h-5 w-5 text-[#FF8C00]" />
-           </div>;
-  }
-  const isXsScreen = screenWidth <= 640
-  const isMdScreen = screenWidth >= 768;
-  const isLgScreen = screenWidth >= 1024;
 
   const handleThemeToggle = ()=> {
-    console.log(theme)
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
+  
   return (
       <div className={`flex flex-col items-center min-h-screen ${geist.variable} bg-background`}>
         <div className="flex justify-between px-4 sm:px-6 xl:px-10 items-center w-full border-b h-10 md:h-12">
@@ -66,33 +57,17 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <main className="w-full mx-auto lg:px-10 2xl:px-16 3xl:!px-24 flex-1">
-          <ResizablePanelGroup 
-            direction={isLgScreen  ? "horizontal" : "vertical"} 
-            className="min-h-[calc(100vh-3.5rem)]"
-          >
-            <ResizablePanel defaultSize={
-              isXsScreen ? 60 : 
-              !isMdScreen ? 100 :
-              isLgScreen ? 75 : 25
-            }>
-              <div className={`h-full w-full ${isXsScreen ? "border-0" : "border-x "}`}>
-                <ResizablePanelGroup direction="vertical" className="h-full">
-                  <ResizablePanel defaultSize={50}>
+        <main className="w-full h-full mx-auto lg:px-10 2xl:px-16 3xl:!px-24 flex-1">
+              <ResizablePanelGroup direction="vertical" className={`min-h-[calc(100vh-3.5rem)] lg:border-x`}>
+                  <ResizablePanel defaultSize={30}>
                     <QueryBuilder />
                   </ResizablePanel>
                   <ResizableHandle withHandle className="bg-transparent"/>
-                  <ResizablePanel defaultSize={50}>
+                  <ResizablePanel defaultSize={70}>
                     <ResultsTable />
                   </ResizablePanel>
-                </ResizablePanelGroup>
-              </div>
-            </ResizablePanel>
-          </ResizablePanelGroup>
+              </ResizablePanelGroup>
         </main>
-        
-       
-
       </div>
   );
 }
