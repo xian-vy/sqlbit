@@ -49,8 +49,8 @@ export default function Home() {
           </h1>
           <div className="flex items-center gap-4 sm:gap-5 w-fit">
             <Sheet>
-                <SheetTrigger className="text-slate-900 dark:text-slate-300  text-[0.7rem] sm:text-xs font-medium tracking-wide flex items-center gap-1 cursor-pointer">
-                    <Database className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" /> SCHEMA
+                <SheetTrigger className="text-slate-900 dark:text-slate-300  text-[0.6rem] sm:text-[0.7rem] font-medium tracking-wide flex items-center gap-1.5 cursor-pointer">
+                    <Database className="w-3 md:w-4 h-3 md:h-4 shrink-0" /> SCHEMA
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[700px] gap-0">
                   <SheetHeader>
@@ -62,11 +62,11 @@ export default function Home() {
                 </SheetContent>
             </Sheet>
             <button  onClick={handleThemeToggle} className="cursor-pointer text-black/80 dark:text-slate-300">
-                <SunMoon className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
+                <SunMoon className="w-3.5 md:w-5 h-3.5 md:h-5 shrink-0" />
             </button>
           </div>
         </div>
-        <main className="w-full mx-auto sm:px-5 md:px-10 2xl:px-16 3xl:!px-24 flex-1">
+        <main className="w-full mx-auto lg:px-10 2xl:px-16 3xl:!px-24 flex-1">
           <ResizablePanelGroup 
             direction={isLgScreen  ? "horizontal" : "vertical"} 
             className="min-h-[calc(100vh-3.5rem)]"

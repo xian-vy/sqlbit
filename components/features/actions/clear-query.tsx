@@ -16,7 +16,7 @@ const ClearQuery = () => {
         variant="outline"
         size="sm"
         onClick={handleClearQuery}
-        className="flex flex-col items-center gap-0 text-[0.7rem] sm:text-xs !rounded-none border-r-0 border-b-0 !bg-background !font-normal text-[#FF8C00]" 
+        className="flex flex-col items-center gap-0 text-[0.65rem] sm:text-[0.7rem] md:text-xs !rounded-none border-r-0 border-b-0 !bg-background !font-normal text-[#FF8C00]" 
     >
         <span className="text-[#FF8C00] font-medium">Clear All</span>
         <span className="text-[0.55rem] text-[#aaa] hidden sm:block  ">ESC</span>

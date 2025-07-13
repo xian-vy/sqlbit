@@ -32,21 +32,21 @@ useEffect(() => {
    }, [rawQuery])
   return (
     <Select value={currentSelection} onValueChange={handleHistorySelect}>
-    <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.7rem] sm:text-xs !rounded-none border-l-0 border-b-0 !bg-background text-[#FF8C00]">
+    <SelectTrigger size="sm" className="w-[95px] sm:w-[100px] shadow-none text-[0.65rem] sm:text-[0.7rem] md:text-xs  !rounded-none border-l-0 border-b-0 !bg-background text-[#FF8C00]">
       <SelectValue placeholder="History" />
     </SelectTrigger>
     <SelectContent className="shadow-none rounded-none ">
       <div className="grid grid-cols-2 gap-2">
         {queryHistory.length > 0 && (
           <div className="col-span-2 mb-2">
-            <SelectItem value="history" disabled className="text-[0.7rem] sm:text-xs font-bold text-muted-foreground">
+            <SelectItem value="history" disabled className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  font-bold text-muted-foreground">
               Recent Queries (15 max)
             </SelectItem>
             {queryHistory.map((query, index) => (
               <div key={`history-${index}`} className="flex items-center group relative">
                 <SelectItem
                   value={`history||${index}`}
-                  className="text-[0.7rem] sm:text-xs pl-4 flex-1"
+                  className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  pl-4 flex-1"
                 >
                   {query.length > 30 ? query.substring(0, 30) + '...' : query}
                 </SelectItem>
