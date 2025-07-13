@@ -37,16 +37,16 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`!shadow-none  bg-transparent rounded-none border-0  ${expandedResults ? 'bg-background fixed inset-4 z-50 border ' : 'py-2 2xl:py-3'} gap-2`}>
+    <Card className={`!shadow-none  bg-transparent rounded-none border-0  ${expandedResults ? 'bg-background fixed inset-0 z-50 border py-2' : 'py-2 2xl:py-3'} gap-2`}>
       <div className="flex justify-between items-center px-2">
-        <span className="text-[0.7rem] sm:text-xs text-muted-foreground">
+        <span className="text-[0.65rem] sm:text-[0.7rem] md:text-xs text-muted-foreground">
           {queryResults?.length ? `Showing ${queryResults.length} results` : ''}
         </span>
         <Button
             variant="ghost"  
             onClick={() => setExpandedResults(!expandedResults)} 
             className={`h-7 w-7 cursor-pointer  !rounded-none !bg-background border-0 z-10 `}>
-            {expandedResults ? <Minimize2 strokeWidth={2} className="!w-3 !h-3" /> : <Maximize2 strokeWidth={2} className="!w-3 !h-3"  />}
+            {expandedResults ? <Minimize2 strokeWidth={2} className="!w-3.5 !h-3" /> : <Maximize2 strokeWidth={2} className="!w-3 !h-3"  />}
           </Button>
       </div>
 
