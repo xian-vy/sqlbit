@@ -15,7 +15,6 @@ import { useScreenSize } from "@/hooks/useScreenSize";
 import { Database, Loader2, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Geist_Mono, Pixelify_Sans } from "next/font/google";
-import { useState } from "react";
 
 const geist = Geist_Mono({
   variable: "--font-geist-sans",
@@ -26,7 +25,6 @@ const pxel = Pixelify_Sans({
   subsets: ["latin"],
   });
 export default function Home() {
-  const [openSheet, setOpenSheet] = useState(false);
   const screenWidth = useScreenSize();
   const {theme, setTheme} = useTheme()
   if (!screenWidth) {
@@ -51,7 +49,7 @@ export default function Home() {
           </h1>
           <div className="flex items-center gap-4 sm:gap-5 w-fit">
             <Sheet>
-                <SheetTrigger onClick={()=> setOpenSheet(true)} className="text-slate-900 dark:text-slate-300  text-[0.7rem] sm:text-xs font-medium tracking-wide flex items-center gap-1 cursor-pointer">
+                <SheetTrigger className="text-slate-900 dark:text-slate-300  text-[0.7rem] sm:text-xs font-medium tracking-wide flex items-center gap-1 cursor-pointer">
                     <Database className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" /> SCHEMA
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[700px] gap-0">
