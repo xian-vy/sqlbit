@@ -43,11 +43,11 @@ export default function Home() {
                 <SheetTrigger className="text-slate-900 dark:text-slate-300  text-[0.6rem] sm:text-[0.7rem] font-medium tracking-wide flex items-center gap-1.5 cursor-pointer">
                     <Database className="w-3 md:w-4 h-3 md:h-4 shrink-0" /> SCHEMA
                 </SheetTrigger>
-                <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[700px] gap-0">
+                <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[600px] gap-0">
                   <SheetHeader>
                      <SheetTitle className="flex items-center gap-2 text-xs xl:text-sm">  <Database className="w-4 h-4 shrink-0" /> SCHEMA</SheetTitle>
                   </SheetHeader>
-                  <ScrollArea className="h-full px-2 sm:px-4 md:px-6 ">
+                  <ScrollArea className="px-2 sm:px-4 md:px-6 h-[90vh]">
                       <TableList />
                   </ScrollArea>
                 </SheetContent>
