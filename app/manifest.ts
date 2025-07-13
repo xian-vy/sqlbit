@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "No Fuss SQL Playground with prebuilt queries and tables.",
     start_url: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#000000",
+    background_color: "#0f172b",
+    theme_color: "#0f172b",
     icons: [
       {
         src: "/img/192.png",
