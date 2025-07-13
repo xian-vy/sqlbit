@@ -87,7 +87,7 @@ export function ResultsTable() {
           />
       </div>
 
-      <ScrollArea className={`w-full ${expandedResults ? 'h-full' : 'h-[calc(80vh-3rem)]'}`}>
+      <ScrollArea className={`w-full ${expandedResults ? 'h-[95vh]' : 'h-[65vh] lg:h-[60vh]'}`}>
         <ScrollBar orientation="horizontal" className="mt-0" />
         <div className="min-w-full inline-block">
           <Table>
