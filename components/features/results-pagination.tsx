@@ -82,7 +82,7 @@ export const ResultsPagination: React.FC<ResultsPaginationProps> = ({
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between lg:justify-end gap-1 sm:gap-2 md:gap-3 lg:gap-4 w-full">
+    <div className="flex items-center justify-between lg:justify-end gap-1 sm:gap-2 md:gap-3 lg:gap-4 w-full -ml-4">
       <div>
         <Pagination>
           <PaginationContent>
@@ -118,7 +118,7 @@ export const ResultsPagination: React.FC<ResultsPaginationProps> = ({
       </div>
       <div className="flex items-center gap-2">
         <Select value={String(itemsPerPage)} onValueChange={(value) => setItemsPerPage(Number(value))}>
-          <SelectTrigger className="!h-6 w-16 text-[0.6rem] sm:text-[0.7rem] !rounded-none shadow-none">
+          <SelectTrigger className="!h-6 w-16 text-[0.6rem] sm:text-[0.7rem] !rounded-none shadow-none -mr-2">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

@@ -67,7 +67,7 @@ export function ResultsTable() {
               <Button
                 variant="ghost"
                 onClick={() => setExpandedResults(!expandedResults)}
-                className={`h-7 w-7 cursor-pointer !rounded-none !bg-background border-0 z-10 lg:hidden`}
+                className={`h-7 w-7 -mr-2 cursor-pointer !rounded-none !bg-background border-0 z-10 lg:hidden`}
               >
                 {expandedResults ? <X strokeWidth={2} className="!w-3.5 md:!w-4 md:!h-4 !h-3" /> : <Expand strokeWidth={2} className="!w-3 !h-3" />}
               </Button>
