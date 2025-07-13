@@ -45,9 +45,9 @@ export default function Home() {
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[700px] gap-0">
                   <SheetHeader>
-                     <SheetTitle className="flex items-center gap-2">  <Database className="w-4 h-4 shrink-0" /> SCHEMA</SheetTitle>
+                     <SheetTitle className="flex items-center gap-2 text-xs xl:text-sm">  <Database className="w-4 h-4 shrink-0" /> SCHEMA</SheetTitle>
                   </SheetHeader>
-                  <ScrollArea className="h-[90vh] px-2 sm:px-4 md:px-6 ">
+                  <ScrollArea className="h-full px-2 sm:px-4 md:px-6 ">
                       <TableList />
                   </ScrollArea>
                 </SheetContent>
@@ -59,11 +59,11 @@ export default function Home() {
         </div>
         <main className="w-full h-full mx-auto lg:px-10 2xl:px-16 3xl:!px-24 flex-1">
               <ResizablePanelGroup direction="vertical" className={`min-h-[calc(100vh-3.5rem)] lg:border-x`}>
-                  <ResizablePanel defaultSize={30}>
+                  <ResizablePanel defaultSize={30} minSize={15}>
                     <QueryBuilder />
                   </ResizablePanel>
                   <ResizableHandle withHandle className="bg-transparent"/>
-                  <ResizablePanel defaultSize={70}>
+                  <ResizablePanel defaultSize={70} maxSize={85}>
                     <ResultsTable />
                   </ResizablePanel>
               </ResizablePanelGroup>

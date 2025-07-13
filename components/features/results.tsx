@@ -50,7 +50,7 @@ export function ResultsTable() {
           </Button>
       </div>
 
-      <ScrollArea className="w-full h-[calc(90vh-3rem)]">
+      <ScrollArea className={`w-full ${expandedResults ? 'h-full' : 'h-[calc(80vh-3rem)]'} `}>
         <ScrollBar orientation="horizontal" className="mt-0" />
         <div className="min-w-full inline-block">
           <Table>

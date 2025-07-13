@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { tableData } from '@/data/schema';
-import { ChevronDownCircle, ChevronUpCircle, KeySquare, Link, Table2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, KeySquare, Link, Table2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 
@@ -16,7 +16,7 @@ const TableList = () => {
         const isVisible = visibleTables.has(tableName);
         
         return (
-          <Card key={tableName} className={`py-2 relative justify-center  gap-2 !shadow-none   rounded-none bg-transparent border-0 border-b   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
+          <Card key={tableName} className={`pt-2 xl:pt-3 pb-0 relative justify-center h-full  !shadow-none  border-x border-t border-b-0  rounded-none bg-transparent   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
               <CardTitle className='flex items-center gap-2'>
                   <Table2 strokeWidth={1.5} className="w-4 h-4"/>
@@ -35,9 +35,9 @@ const TableList = () => {
                       return newSet;
                     })}
                     variant="ghost"   
-                    className="absolute top-0 right-0 h-7 w-7 cursor-pointer border-0"
+                    className="absolute top-2 right-2 h-7 w-7 cursor-pointer border-0"
                   >
-                    {isVisible ? <ChevronUpCircle strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4" /> : <ChevronDownCircle strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4" />}
+                    {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4 !text-foreground/60" /> : <ChevronDown strokeWidth={1.5} className="!text-foreground/60 !w-3.5 !h-3.5 sm:!w-4 sm:!h-4" />}
               </Button>
             
             <ScrollArea className={`h-full`}>
