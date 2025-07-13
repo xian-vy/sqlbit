@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { tableData } from '@/data/schema';
-import { ChevronDown, ChevronUp, KeySquare, Link } from 'lucide-react';
+import { ChevronDownCircle, ChevronUpCircle, KeySquare, Link, Table2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 
@@ -16,9 +16,12 @@ const TableList = () => {
         const isVisible = visibleTables.has(tableName);
         
         return (
-          <Card key={tableName} className={`py-2 relative  gap-2 !shadow-none   rounded-none bg-transparent border-0 border-b   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
+          <Card key={tableName} className={`py-2 relative justify-center  gap-2 !shadow-none   rounded-none bg-transparent border-0 border-b   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
-              <CardTitle className='text-[0.7rem] sm:text-xs lg:text-[0.8rem] font-medium text-[#FF8C00]'>{tableName}</CardTitle>
+              <CardTitle className='flex items-center gap-2'>
+                  <Table2 strokeWidth={1.5} className="w-4 h-4"/>
+                  <span className="text-[#FF8C00] text-xs lg:text-sm font-medium mb-0.5">{tableName}</span>
+              </CardTitle>
             </CardHeader>
             <Button 
                     onClick={(e) => setVisibleTables(prev => {
@@ -32,9 +35,9 @@ const TableList = () => {
                       return newSet;
                     })}
                     variant="ghost"   
-                    className="absolute top-0 right-0 h-7 w-7 cursor-pointer !rounded-none !bg-background border-0"
+                    className="absolute top-0 right-0 h-7 w-7 cursor-pointer border-0"
                   >
-                    {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5" /> : <ChevronDown strokeWidth={1.5} className="!w-3.5 !h-3.5" />}
+                    {isVisible ? <ChevronUpCircle strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4" /> : <ChevronDownCircle strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4" />}
               </Button>
             
             <ScrollArea className={`h-full`}>
