@@ -2,15 +2,20 @@
 import { QueryBuilder } from "@/components/features/query-builder";
 import { ResultsTable } from "@/components/features/results";
 import TableList from "@/components/features/table-list";
-import { Button } from "@/components/ui/button";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/ui/sheet";
 import { useScreenSize } from "@/hooks/useScreenSize";
-import { Loader2, SunMoon } from "lucide-react";
+import { Database, Loader2, SunMoon } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Geist_Mono, Pixelify_Sans } from "next/font/google";
-
-import Link from "next/link";
+import { useState } from "react";
 
 const geist = Geist_Mono({
   variable: "--font-geist-sans",
@@ -21,6 +26,7 @@ const pxel = Pixelify_Sans({
   subsets: ["latin"],
   });
 export default function Home() {
+  const [openSheet, setOpenSheet] = useState(false);
   const screenWidth = useScreenSize();
   const {theme, setTheme} = useTheme()
   if (!screenWidth) {
@@ -43,16 +49,26 @@ export default function Home() {
             <span className="text-[#FF8C00]">SQL</span>
             <span className="text-slate-900 dark:text-slate-100">BIT</span>
           </h1>
-          <div className="flex items-center gap-3 ">
-            <Link href="/about" className="text-slate-900 dark:text-slate-300 hover:text-slate-100 text-xs">
-              About
-            </Link>
-            <Button size="icon" onClick={handleThemeToggle} className="cursor-pointer text-black/80 dark:text-slate-300">
-                <SunMoon className="w-3 h-3 shrink-0" />
-            </Button>
+          <div className="flex items-center gap-4 sm:gap-5 w-fit">
+            <Sheet>
+                <SheetTrigger onClick={()=> setOpenSheet(true)} className="text-slate-900 dark:text-slate-300  text-[0.7rem] sm:text-xs font-medium tracking-wide flex items-center gap-1 cursor-pointer">
+                    <Database className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" /> SCHEMA
+                </SheetTrigger>
+                <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[700px] gap-0">
+                  <SheetHeader>
+                     <SheetTitle className="flex items-center gap-2">  <Database className="w-4 h-4 shrink-0" /> SCHEMA</SheetTitle>
+                  </SheetHeader>
+                  <ScrollArea className="h-[90vh] px-2 sm:px-4 md:px-6 ">
+                      <TableList />
+                  </ScrollArea>
+                </SheetContent>
+            </Sheet>
+            <button  onClick={handleThemeToggle} className="cursor-pointer text-black/80 dark:text-slate-300">
+                <SunMoon className="w-4 sm:w-5 h-4 sm:h-5 shrink-0" />
+            </button>
           </div>
         </div>
-        <main className="w-full mx-auto sm:px-5 md:px-10 2xl:px-16 flex-1">
+        <main className="w-full mx-auto sm:px-5 md:px-10 2xl:px-16 3xl:!px-24 flex-1">
           <ResizablePanelGroup 
             direction={isLgScreen  ? "horizontal" : "vertical"} 
             className="min-h-[calc(100vh-3.5rem)]"
@@ -74,16 +90,11 @@ export default function Home() {
                 </ResizablePanelGroup>
               </div>
             </ResizablePanel>
-            <ResizableHandle withHandle className="lg:bg-transparent" />
-            <ResizablePanel defaultSize={isXsScreen ? 40 : 25}>
-              <div className={`h-full border-0 ${isLgScreen ? " border-r ":"border-x border-t "} `}>
-                <ScrollArea className="h-[90vh] ">
-                  <TableList />
-                </ScrollArea>
-              </div>
-            </ResizablePanel>
           </ResizablePanelGroup>
         </main>
+        
+       
+
       </div>
   );
 }
