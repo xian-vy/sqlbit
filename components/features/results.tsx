@@ -58,7 +58,7 @@ export function ResultsTable() {
   const columns = Object.keys(queryResults[0]);
 
   return (
-    <Card className={`!shadow-none bg-transparent rounded-none border-0 ${expandedResults ? 'bg-background fixed inset-0 z-50 border py-2' : 'py-2 2xl:py-3'} gap-2`}>
+    <Card className={`!shadow-none bg-transparent rounded-none border-0 ${expandedResults ? 'bg-background fixed inset-0 z-50 border py-0' : 'py-2 2xl:py-3'} gap-2`}>
       <div className="flex flex-col lg:flex-row justify-between items-center px-2 md:px-4">
           <div className="flex items-center justify-between lg:justify-start gap-4 w-full">
               <span className="text-[0.65rem] sm:text-[0.7rem] md:text-xs text-muted-foreground">
