@@ -41,7 +41,7 @@ export default function Home() {
           <div className="flex items-center gap-4 sm:gap-5 w-fit">
             <Sheet>
                 <SheetTrigger className="text-slate-900 dark:text-slate-300  text-[0.6rem] sm:text-[0.7rem] font-medium tracking-wide flex items-center gap-1.5 cursor-pointer">
-                    <Database className="w-3 md:w-4 h-3 md:h-4 shrink-0" /> SCHEMA
+                    <Database className="w-3 3xl:w-4 h-3 3xl:h-4 shrink-0" /> SCHEMA
                 </SheetTrigger>
                 <SheetContent className="w-full sm:max-w-[500px] lg:max-w-[600px] gap-0">
                   <SheetHeader>
@@ -53,7 +53,7 @@ export default function Home() {
                 </SheetContent>
             </Sheet>
             <button  onClick={handleThemeToggle} className="cursor-pointer text-black/80 dark:text-slate-300">
-                <SunMoon className="w-3.5 md:w-5 h-3.5 md:h-5 shrink-0" />
+                <SunMoon className="w-3.5 3xl:w-5 h-3.5 3xl:h-5 shrink-0" />
             </button>
           </div>
         </div>
