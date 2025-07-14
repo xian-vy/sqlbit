@@ -112,3 +112,78 @@
     margin-right: 0 !important;
   } 
 }
+
+
+/* Monaco Editor Customization */
+.monaco-editor {
+  border: none !important;
+  outline: none !important;
+  padding-top: 10px;
+}
+
+.monaco-editor .margin {
+  background-color: transparent !important;
+}
+
+.monaco-editor .monaco-editor-background {
+  background-color: white !important;
+}
+
+/* Dark theme adjustments for Monaco */
+.dark .monaco-editor .monaco-editor-background {
+  background-color: #0f172b !important;
+}
+
+.dark .monaco-editor .margin {
+  background-color: #0f172b !important;
+}
+
+.dark .monaco-editor .monaco-editor .margin {
+  background-color: #0f172b !important;
+}
+
+/* Additional dark theme line number styling */
+
+.dark .monaco-editor {
+  background-color: #0f172b !important;
+}
+
+.dark .monaco-editor .margin-view-overlays {
+  background-color: #0f172b !important;
+}
+
+.dark .monaco-editor .margin-view-overlays .cgmr {
+  background-color: #0f172b !important;
+}
+
+.dark .monaco-editor .margin-view-overlays .margin-view-lines {
+  background-color: #0f172b !important;
+}
+
+/* Dark theme current line highlight */
+.dark .monaco-editor .current-line {
+  background-color: #0f172b !important;
+  border-color: #1a2839 !important;
+}
+
+.dark .monaco-editor .view-overlays .current-line {
+  background-color: #0f172b !important;
+  border-color: #1a2839 !important;
+}
+
+.dark .monaco-editor .view-overlays .current-line-border {
+  background-color: #1a2839 !important;
+}
+
+.dark .monaco-editor .view-overlays .current-line-border.current-line-top {
+  border-top-color: #1a2839 !important;
+}
+
+.dark .monaco-editor .view-overlays .current-line-border.current-line-bottom {
+  border-bottom-color: #1a2839 !important;
+}
+
+/* Light theme adjustments for Monaco */
+.monaco-editor .monaco-editor-background {
+  background-color: white !important;
+}
