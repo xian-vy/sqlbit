@@ -147,6 +147,15 @@
 .monaco-editor .monaco-editor-background {
   background-color: white !important;
 }
+ .monaco-editor .current-line {
+  background-color: white !important;
+  border-color: white !important;
+}
+
+ .monaco-editor .view-overlays .current-line {
+  background-color: white !important;
+  border-color: white !important;
+}
 
 /* Dark theme adjustments for Monaco */
 .dark .monaco-editor .monaco-editor-background {
@@ -182,24 +191,24 @@
 /* Dark theme current line highlight */
 .dark .monaco-editor .current-line {
   background-color: #0f172b !important;
-  border-color: #1a2839 !important;
+  border-color: #0f172b !important;
 }
 
 .dark .monaco-editor .view-overlays .current-line {
   background-color: #0f172b !important;
-  border-color: #1a2839 !important;
+  border-color: #0f172b !important;
 }
 
 .dark .monaco-editor .view-overlays .current-line-border {
-  background-color: #1a2839 !important;
+  background-color: #0f172b !important;
 }
 
 .dark .monaco-editor .view-overlays .current-line-border.current-line-top {
-  border-top-color: #1a2839 !important;
+  border-top-color: #0f172b !important;
 }
 
 .dark .monaco-editor .view-overlays .current-line-border.current-line-bottom {
-  border-bottom-color: #1a2839 !important;
+  border-bottom-color: #0f172b !important;
 }
 
 /* Light theme adjustments for Monaco */
