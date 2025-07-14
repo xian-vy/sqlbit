@@ -54,7 +54,7 @@ export function ExampleQuerySelector() {
   return (
     <div className="self-end">
       <Select value={currentSelection} onValueChange={handleExampleSelect}>
-        <SelectTrigger size="sm" className="w-[87px] sm:w-[90px] xl:w-[100px] shadow-none text-[0.65rem] sm:text-[0.7rem] md:text-xs !rounded-none border-l-0 border-b-0 !bg-background text-[#FF8C00]">
+        <SelectTrigger size="sm" className="w-[87px] sm:w-[90px] xl:w-[100px] shadow-none text-[0.65rem] sm:text-[0.7rem] md:text-xs !rounded-none border-l-0 border-b-0 !bg-background ">
           <SelectValue placeholder="Examples" />
         </SelectTrigger>
         <SelectContent className="shadow-none rounded-none ">
@@ -62,14 +62,14 @@ export function ExampleQuerySelector() {
             <div>
               {leftColumn.map(([category, queries]) => (
                 <div key={category}>
-                  <SelectItem value={category} disabled className="text-[0.65rem] sm:text-[0.7rem] md:text-xs   font-bold text-muted-foreground">
+                  <SelectItem value={category}  className="text-[0.65rem] sm:text-[0.7rem] md:text-xs font-medium pointer-events-none underline underline-offset-4 ">
                     {category}
                   </SelectItem>
                   {Object.entries(queries).map(([queryName]) => (
                     <SelectItem
                       key={`${category}||${queryName}`}
                       value={`${category}||${queryName}`}
-                      className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  pl-4"
+                      className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  pl-4 cursor-pointer"
                     >
                       {queryName}
                     </SelectItem>
@@ -80,14 +80,14 @@ export function ExampleQuerySelector() {
             <div>
               {rightColumn.map(([category, queries]) => (
                 <div key={category}>
-                  <SelectItem value={category} disabled className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  font-bold text-muted-foreground">
+                  <SelectItem value={category}  className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  font-medium pointer-events-none underline underline-offset-4 ">
                     {category}
                   </SelectItem>
                   {Object.entries(queries).map(([queryName]) => (
                     <SelectItem
                       key={`${category}||${queryName}`}
                       value={`${category}||${queryName}`}
-                      className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  pl-4"
+                      className="text-[0.65rem] sm:text-[0.7rem] md:text-xs  pl-4 cursor-pointer"
                     >
                       {queryName}
                     </SelectItem>

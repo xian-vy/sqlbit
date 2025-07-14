@@ -11,7 +11,7 @@ const RunQuery = () => {
 
     const handleRunQuery = () => {
         if (!rawQuery.trim()) {
-          setQueryError("Please enter a SQL query");
+          setQueryError("Please enter a valid SQL query");
           return;
         }
     
