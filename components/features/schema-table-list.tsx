@@ -6,17 +6,15 @@ import { ChevronDown, ChevronUp, KeySquare, Link, Table2 } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 
-const TableList = () => {
-    const [expandedTable] = useState<string | null>(null);
+const SchemaTableList = () => {
     const [visibleTables, setVisibleTables] = useState<Set<string>>(() => new Set(Object.keys(tableData)));
     return Object.entries(tableData).map(([tableName, data]) => {
         type RowType = typeof data[0];
         const columns = data.length > 0 ? Object.keys(data[0]) : [];
-        const isExpanded = expandedTable === tableName;
-        const isVisible = visibleTables.has(tableName);
+        const isExpanded = visibleTables.has(tableName);
         
         return (
-          <Card key={tableName} className={`pt-2 xl:pt-3 pb-0 relative justify-center h-full  !shadow-none  border-x border-t border-b-0  rounded-none bg-transparent   ${isExpanded ? 'fixed inset-4 z-50 bg-card' : ' '}`}>
+          <Card key={tableName} className={`pt-2 xl:pt-3 pb-0 relative justify-center h-full  !shadow-none  ${tableName === 'regions' ? 'border-b' : 'border-b-0'}  rounded-none bg-transparent }`}>
             <CardHeader className="flex flex-row items-center justify-start px-4">
               <CardTitle className='flex items-center gap-2'>
                   <Table2 strokeWidth={1.5} className="w-4 h-4"/>
@@ -27,7 +25,7 @@ const TableList = () => {
                     onClick={(e) => setVisibleTables(prev => {
                         e.stopPropagation();
                       const newSet = new Set(prev);
-                      if (isVisible) {
+                      if (isExpanded) {
                         newSet.delete(tableName);
                       } else {
                         newSet.add(tableName);
@@ -37,13 +35,14 @@ const TableList = () => {
                     variant="ghost"   
                     className="absolute top-2 right-2 h-7 w-7 cursor-pointer border-0"
                   >
-                    {isVisible ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4 !text-foreground/60" /> : <ChevronDown strokeWidth={1.5} className="!text-foreground/60 !w-3.5 !h-3.5 sm:!w-4 sm:!h-4" />}
+                    {isExpanded ? <ChevronUp strokeWidth={1.5} className="!w-3.5 !h-3.5 sm:!w-4 sm:!h-4 !text-foreground/60" /> : <ChevronDown strokeWidth={1.5} className="!text-foreground/60 !w-3.5 !h-3.5 sm:!w-4 sm:!h-4" />}
               </Button>
             
             <ScrollArea className={`h-full`}>
               <ScrollArea className="w-full h-auto">
                 <div className="text-xs">
                   <Table>
+                    {(isExpanded ) && (
                     <TableHeader>
                       <TableRow>
                         {columns.map((column) => {
@@ -63,7 +62,8 @@ const TableList = () => {
                         })}
                       </TableRow>
                     </TableHeader>
-                    {(isVisible || isExpanded) && (
+                    )}
+                    {(isExpanded) && (
                       <TableBody>
                         {data.map((row, index) => (
                           <TableRow key={index}>
@@ -87,4 +87,4 @@ const TableList = () => {
       });
 }
 
-export default TableList
+export default SchemaTableList
