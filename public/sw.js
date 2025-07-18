@@ -6,8 +6,7 @@ const urlsToCache = [
   '/about',
   '/img/192.png',
   '/img/512.png',
-  '/img/sqlbit.png',
-  '/offline.html'
+  '/img/sqlbit.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -18,35 +17,60 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Only handle same-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) return;
+  // Skip cross-origin requests
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
 
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        // 1. Serve from cache
-        return cachedResponse;
-      }
-      // 2. Fetch from network and cache it
-      return fetch(event.request)
-        .then((networkResponse) => {
-          // Only cache valid responses
-          if (!networkResponse || networkResponse.status !== 200) {
-            return networkResponse;
-          }
-          const responseToCache = networkResponse.clone();
-          caches.open(RUNTIME_CACHE).then((cache) => {
-            cache.put(event.request, responseToCache);
+    caches.match(event.request)
+      .then((cachedResponse) => {
+        // Always try network first for HTML requests
+        if (event.request.headers.get('accept').includes('text/html')) {
+          return fetch(event.request)
+            .then((response) => {
+              if (!response || response.status !== 200) {
+                return cachedResponse;
+              }
+              const responseToCache = response.clone();
+              caches.open(RUNTIME_CACHE)
+                .then((cache) => {
+                  cache.put(event.request, responseToCache);
+                });
+              return response;
+            })
+            .catch(() => cachedResponse);
+        }
+
+        if (cachedResponse) {
+          // Return cached response and update in background
+          fetch(event.request)
+            .then((response) => {
+              if (response && response.status === 200) {
+                const responseToCache = response.clone();
+                caches.open(RUNTIME_CACHE)
+                  .then((cache) => {
+                    cache.put(event.request, responseToCache);
+                  });
+              }
+            });
+          return cachedResponse;
+        }
+
+        // If not in cache, fetch from network
+        return fetch(event.request)
+          .then((response) => {
+            if (!response || response.status !== 200) {
+              return response;
+            }
+            const responseToCache = response.clone();
+            caches.open(RUNTIME_CACHE)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              });
+            return response;
           });
-          return networkResponse;
-        })
-        // 3. If network fails, optionally serve a fallback (for HTML)
-        .catch(() => {
-          if (event.request.headers.get('accept').includes('text/html')) {
-            return caches.match('/offline.html');
-          }
-        });
-    })
+      })
   );
 });
 
