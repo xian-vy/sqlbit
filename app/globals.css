@@ -124,19 +124,19 @@
 /* Mobile font size for Monaco editor */
 @media screen and (max-width: 768px) {
   .monaco-editor .monaco-editor-background {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   
   .monaco-editor .view-lines {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   
   .monaco-editor .margin-view-overlays {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
   
   .monaco-editor .margin-view-overlays .margin-view-lines {
-    font-size: 12px !important;
+    font-size: 14px !important;
   }
 }
 
